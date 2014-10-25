@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		D019542F19F9E45000BCA123 /* ytdlx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ytdlx.png; sourceTree = "<group>"; };
+		D0632D5719FB31BA0036BA46 /* youtube-dl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "youtube-dl"; sourceTree = "<group>"; };
 		D0F6F1C319F9DB4B00D612D4 /* Youtube DLX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Youtube DLX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F6F1C719F9DB4B00D612D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0F6F1C819F9DB4B00D612D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		D0F6F1C619F9DB4B00D612D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0632D5719FB31BA0036BA46 /* youtube-dl */,
 				D019542F19F9E45000BCA123 /* ytdlx.png */,
 				D0F6F1C719F9DB4B00D612D4 /* Info.plist */,
 			);

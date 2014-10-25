@@ -16,6 +16,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        var binExsists = NSFileManager.defaultManager().fileExistsAtPath("/usr/local/bin/youtube-dl")
+        if(binExsists){
+            print("I see youtube-dl")
+        }
+        else {
+            let path = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("youtube-dl")
+            NSFileManager.defaultManager().copyItemAtPath(path!, toPath: "/usr/local/bin", error: nil)
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
