@@ -17,13 +17,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         var binExsists = NSFileManager.defaultManager().fileExistsAtPath("/usr/local/bin/youtube-dl")
-        if(binExsists){
+       /* if(binExsists){
             print("I see youtube-dl")
         }
-        else {
+        else {*/
+
             let path = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("youtube-dl")
-            NSFileManager.defaultManager().copyItemAtPath(path!, toPath: "/usr/local/bin", error: nil)
-        }
+            let destination = "~/Library/Application Support/Youtube DLX/"
+            let destinationPath = destination.stringByStandardizingPath
+            NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: true, attributes: nil, error: nil)
+            NSFileManager.defaultManager().copyItemAtPath(path!, toPath: destinationPath + "/youtube-dl", error: nil)
+       // }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
