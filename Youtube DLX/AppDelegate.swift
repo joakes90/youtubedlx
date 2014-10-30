@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBOutlet weak var vidURL: NSTextField!
+    @IBOutlet weak var spinner: NSProgressIndicator!
 
     @IBAction func downloadVid(sender: AnyObject) {
         var download = NSTask()
@@ -34,6 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         download.arguments = [url]
         download.currentDirectoryPath = downloadDir
         download.launch()
+        while(download.running){
+            spinner.startAnimation(self)
+        }
+        spinner.stopAnimation(self)
         
     }
 }

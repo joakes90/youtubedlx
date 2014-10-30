@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Youtube_DLX" customModuleProvider="target">
             <connections>
+                <outlet property="spinner" destination="JJ4-iG-RIO" id="CCt-uV-aR0"/>
                 <outlet property="vidURL" destination="Xnq-TW-VFp" id="XQs-iE-uG1"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -706,6 +707,9 @@
                             <action selector="downloadVid:" target="Voe-Tx-rLC" id="Pqt-9z-U4Z"/>
                         </connections>
                     </button>
+                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="JJ4-iG-RIO">
+                        <rect key="frame" x="224" y="101" width="32" height="32"/>
+                    </progressIndicator>
                 </subviews>
             </view>
             <point key="canvasLocation" x="574" y="423"/>
