@@ -16,21 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        var appSupport = "~/Library/Application Support/Youtube DLX/youtube-dl"
-        appSupport = appSupport.stringByStandardizingPath
-        var binExsists = NSFileManager.defaultManager().fileExistsAtPath(appSupport)
-        if(!binExsists){
-            var path = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("youtube-dl")
-            var destination = "~/Library/Application Support/Youtube DLX/"
-            var destinationPath = destination.stringByStandardizingPath
-            NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: true, attributes: nil, error: nil)
-            
-            var moveBin = NSTask()
-            moveBin.launchPath = "/bin/cp"
-            moveBin.arguments = [path!, destinationPath]
-            moveBin.launch()
-           
-        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -41,12 +26,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func downloadVid(sender: AnyObject) {
         var download = NSTask()
-        var cliApp = "~/Library/Application Support/Youtube DLX/youtube-dl"
-        cliApp = cliApp.stringByStandardizingPath
+        var cliApp = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("youtube-dl")
+        var url = vidURL.stringValue
+        var downloadDir = "~/Downloads/".stringByStandardizingPath
         
-        download.launchPath = cliApp
-        download.arguments = [vidURL.stringValue]
-        download.currentDirectoryPath = "/Users/justinoakes/Downloads/"
+        download.launchPath = cliApp!
+        download.arguments = [url]
+        download.currentDirectoryPath = downloadDir
         download.launch()
         
     }
