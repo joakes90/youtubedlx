@@ -16,6 +16,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        var lastUpdate = NSUserDefaults.standardUserDefaults().doubleForKey("date")
+        var today = NSDate.timeIntervalSinceReferenceDate()
+        
+        if (today.advancedBy(-604800) >= lastUpdate){
+            update(self)
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -41,5 +47,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         spinner.stopAnimation(self)
         
     }
+    
+    @IBAction func update(sender: AnyObject) {
+        var cliApp = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("youtube-dl")
+        var update = NSTask()
+        
+        update.launchPath = cliApp!
+        update.arguments = ["--update"]
+        update.launch()
+        
+        while(update.running){
+            spinner.startAnimation(self)
+        }
+        spinner.stopAnimation(self)
+        NSUserDefaults.standardUserDefaults().setObject(NSDate.timeIntervalSinceReferenceDate(), forKey: "date")
+    }
+    
 }
 
