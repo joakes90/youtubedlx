@@ -30,9 +30,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var vidURL: NSTextField!
     @IBOutlet weak var spinner: NSProgressIndicator!
-
+    var download: NSTask!
+    var timer: NSTimer!
+    
     @IBAction func downloadVid(sender: AnyObject) {
-        var download = NSTask()
+        download = NSTask()
+        
         var cliApp = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("youtube-dl")
         var url = vidURL.stringValue
         var downloadDir = "~/Downloads/".stringByStandardizingPath
@@ -41,10 +44,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         download.arguments = [url]
         download.currentDirectoryPath = downloadDir
         download.launch()
-        while(download.running){
-            spinner.startAnimation(self)
-        }
-        spinner.stopAnimation(self)
+        spinner.startAnimation(self)
+        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "toggleSpinner", userInfo: nil, repeats: true)
         
     }
     
@@ -63,5 +64,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSUserDefaults.standardUserDefaults().setObject(NSDate.timeIntervalSinceReferenceDate(), forKey: "date")
     }
     
+    func toggleSpinner() {
+        if(!download.running){
+            spinner.stopAnimation(self)
+            timer.invalidate()
+        }
+    }
 }
 
